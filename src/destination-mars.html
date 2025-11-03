@@ -4,34 +4,82 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
+  
+   <link href="../dist/css/output.css" rel="stylesheet">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+
   
   <title>Frontend Mentor | Space tourism website</title>
 </head>
-<body>
+<body  class="bg-destinationbdy mobile:bg-destinationminscrn tablet:bg-destinationtabscrn bg-no-repeat min-h-screen flex flex-col font-sans ">
+<header class="fixed top-0 left-0 right-0 z-10 flex items-center justify-between h-20">
+  
+  <!-- Logo and mobile menu button container -->
+  <div class="flex items-center justify-between w-full px-6 md:px-12">
+    <button id="menu-toggle" class="focus:outline-none md:hidden">
+      <img src="assets/shared/icon-hamburger.svg" alt="">
+    </button>
+  </div>
 
-  00 Home
-  01 Destination
-  02 Crew
-  03 Technology
+  <!-- The line -->
+  <hr class="absolute top-[3rem] left-[10rem] right-[10rem]  border-t-2 border-white/30 hidden md:block">
 
-  01 Pick your destination
+  <!-- The glass menu bar -->
+  <nav class="absolute right-0 top-[1rem] flex justify-center items-center w-[60%] h-16 p-6
+              rounded-l-2xl shadow-2xl bg-white/10 backdrop-blur-md
+              border-t border-white/20 border-opacity-50
+              hover:border-opacity-80 transition-all duration-300 hidden md:flex">
+    <ul class="flex space-x-8 list-none text-white mr-10">
+      <li><a href="/src/index.html" class="hover:underline decoration-2 [text-underline-offset:26px]">00 Home</a></li>
+      <li><a href="/src/destination-mars.html" class="hover:underline decoration-2 [text-underline-offset:26px]">01 Destination</a></li>
+      <li><a href="/src/crew-engineer.html" class="hover:underline decoration-2 [text-underline-offset:26px]">02 Crew</a></li>
+      <li><a href="/src/technology-vehicle.html" class="hover:underline decoration-2 [text-underline-offset:26px]">03 Technology</a></li>
+    </ul>
+  </nav>
+</header>
 
-  Moon
-  Mars
-  Europa
-  Titan
+<main class="text-white flex mt-[35vh] justify-between mobile:mt-28  mobile:flex-col mobile:items-center mobile:justify-center  " > 
+<section class="ml-[35vh]" > 
+  <h2 class="-mt-24  tracking-widest">
+     <span class=" text-gray-700 mr-5 font-bold"> 01 </span>   PICK YOUR DESTINATION
+  </h2> 
+  <div class="w-65 h-50">
+     <img id="planetImage" src="/src/assets/destination/image-mars.png" alt="planet" class="w-full h-auto object-cover rounded-lg mt-10" srcset="">
+  </div>
 
-  Mars
+</section>
 
-  Don’t forget to pack your hiking boots. You’ll need them to tackle Olympus Mons, 
-  the tallest planetary mountain in our solar system. It’s two and a half times 
-  the size of Everest!
-
-  Avg. distance
-  225 mil. km
-
-  Est. travel time
-  9 months
+<section  class="mr-[28vh]"> 
+  <div class="flex gap-10 text-gray-500 font-thin text-sm  mobile:text-xs tracking-tight " >
+  <button data-planet="moon"> <a href="#" class="planet-btn  hover:underline decoration-2 decoration-white [text-underline-offset:16px]">Moon</a> </button>
+ <button data-planet="mars"> <a href="#" class="planet-btn hover:underline decoration-2 decoration-white [text-underline-offset:16px]"> Mars</a></button> 
+  <button data-planet="europa"> <a href="#" class="planet-btn hover:underline decoration-2 decoration-white [text-underline-offset:16px]"> Europa</a></button> 
+  <button data-planet="Titan"> <a href="#" class="planet-btn hover:underline decoration-2 decoration-white [text-underline-offset:16px]"> Titan</a></button>
+  </div>
+ <h1 id="planetName"> <span class="block font-thin text-8xl my-6 mobile:text-5xl uppercase -tracking-wider pt-[1.5vh] p-2 "> MARS</span>  </h1> 
+ <p id="planetDesc" class="block text-gray-500 font-thin text-sm mobile:text-xs tracking-tight ">
+  Don't forget to pack your hiking boots. You'll need them <br> tackle Olympus Mons, 
+  the tallest planetary mountain in <br> our solar system. It's two and a half times 
+  the size of <br>  Everest!
+ </p>
+ 
+ <hr class="mt-10 border-white/30">
+ <div class="mt-5 flex flex-row  justify-between"> 
+ <span>
+  <span class=" text-gray-500 font-thin text-xs mobile:text-xs tracking-tight ">Avg. distance  </span> 
+   <br>
+  <h1 id="planetDistance" class="text-xl">225 mil. km  </h1>
+</span> 
+<span> 
+  <span class=" text-gray-500 font-thin text-xs mobile:text-xs tracking-tight ">Est. travel time </span>
+   <br>
+  <h1 id="planetTravel" class="text-xl"> 9 months </h1>
+ </span>
+  </div>
+  </section>
+</main>
+  <script src="js/script.js"></script>
 </body>
 </html>
