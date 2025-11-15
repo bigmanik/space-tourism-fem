@@ -1,5 +1,5 @@
-
 document.addEventListener("DOMContentLoaded", () => {
+  // ==================== DESTINATION PAGE ====================
   const planets = {
     moon: {
       name: "MOON",
@@ -31,48 +31,169 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  // FIXED: Changed from button[planet-btn] to button[data-planet]
-  const buttons = document.querySelectorAll("button[data-planet]");
-  const image = document.getElementById("planetImage");
-  const name = document.getElementById("planetName");
-  // const nameSpan = document.getElementById("planetName span");
-  const desc = document.getElementById("planetDesc");
-  const distance = document.getElementById("planetDistance");
-  const travel = document.getElementById("planetTravel");
+  const destButtons = document.querySelectorAll("button[data-planet]");
+  
+  // Only run destination code if elements exist
+  if (destButtons.length > 0) {
+    const image = document.getElementById("planetImage");
+    const name = document.getElementById("planetName");
+    const desc = document.getElementById("planetDesc");
+    const distance = document.getElementById("planetDistance");
+    const travel = document.getElementById("planetTravel");
 
-  buttons.forEach(btn => {
-    // FIXED: Added 'e' parameter
-    btn.addEventListener("click", (e) => {
-      e.preventDefault();
-      
-      // FIXED: Added .toLowerCase() to match object keys
-      const key = btn.dataset.planet.toLowerCase();
+    destButtons.forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        
+        const key = btn.dataset.planet.toLowerCase();
 
-      // remove underline from all buttons
-      buttons.forEach(b => b.classList.remove("border-b-2", "border-white"));
-    //   btn.classList.add("border-b-2", "border-white");
+        // remove underline from all buttons
+        destButtons.forEach(b => b.classList.remove("border-b-2", "border-white"));
 
-      // fade out effect
-      image.classList.add("opacity-0");
-      name.classList.add("opacity-0");
-      desc.classList.add("opacity-0");
-      distance.classList.add("opacity-0");
-      travel.classList.add("opacity-0");
+        // fade out effect
+        image.classList.add("opacity-0");
+        name.classList.add("opacity-0");
+        desc.classList.add("opacity-0");
+        distance.classList.add("opacity-0");
+        travel.classList.add("opacity-0");
 
-      setTimeout(() => {
-        image.src = planets[key].image;
-        name.parentElement = planets[key].name;
-        desc.textContent = planets[key].description;
-        distance.textContent = planets[key].distance;
-        travel.textContent = planets[key].travel;
+        setTimeout(() => {
+          image.src = planets[key].image;
+          name.querySelector("span").textContent = planets[key].name;
+          desc.textContent = planets[key].description;
+          distance.textContent = planets[key].distance;
+          travel.textContent = planets[key].travel;
 
-        // FIXED: Added fade-in for distance and travel
-        image.classList.remove("opacity-0");
-        name.classList.remove("opacity-0");
-        desc.classList.remove("opacity-0");
-        distance.classList.remove("opacity-0");
-        travel.classList.remove("opacity-0");
-      }, 200);
+          image.classList.remove("opacity-0");
+          name.classList.remove("opacity-0");
+          desc.classList.remove("opacity-0");
+          distance.classList.remove("opacity-0");
+          travel.classList.remove("opacity-0");
+        }, 200);
+      });
     });
-  });
+  }
+
+  // ==================== CREW PAGE ====================
+  const crewData = [
+    {
+      role:"Commander",
+      name:" Douglas Hurley",
+      text:"  Douglas Gerald Hurley is an American engineer, former Marine Corps pilot and former NASA astronaut. He launched into space for the third time as commander of Crew Dragon Demo-2.",
+      img:"/src/assets/crew/image-douglas-hurley.png"
+    },
+    {
+      role:"Mission Specialist",
+      name:"Mark Shuttleworth",
+      text:"Mark Richard Shuttleworth is the founder and CEO of Canonical, the company behind the Linux-based Ubuntu operating system. Shuttleworth became the first South African to travel to space as a space tourist.",
+      img:"/src/assets/crew/image-mark-shuttleworth.png"
+    },
+    {
+      role:"Flight Engineer",
+      name:"Anousheh Ansari",
+      text:"  Anousheh Ansari is an Iranian American engineer and co-founder of Prodea Systems. Ansari was the fourth self-funded space tourist, the first self-funded woman to flyto the ISS, and the first Iranian in space.",
+      img:"/src/assets/crew/image-anousheh-ansari.png"
+    },
+    {
+      role:"Pilot",
+      name:"Victor Glover",
+      text:"Pilot on the first operational flight of the SpaceX Crew Dragon to the International Space Station. Glover is a commander in the U.S. Navy where he pilots an F/A-18.He was a crew member of Expedition 64, and served as a station systems flight engineer. ",
+      img:"/src/assets/crew/image-victor-glover.png"
+    }
+  ];
+
+  // Check if crew page elements exist
+  const roleEl = document.getElementById("crew-role");
+  const nameEl = document.getElementById("crew-name");
+  const descEl = document.getElementById("crew-desc");
+  const imgEl = document.getElementById("crew-img");
+  const dots = document.querySelectorAll(".dot");
+
+  // Only run crew code if elements exist
+  if (roleEl && nameEl && descEl && imgEl && dots.length > 0) {
+    let currentIndex = 2; // start on Anousheh
+
+    function updateDots(activeIndex) {
+      dots.forEach((dot, i) => {
+        dot.classList.remove("bg-white", "bg-white/50");
+        if (i === activeIndex) dot.classList.add("bg-white");
+        else dot.classList.add("bg-white/50");
+      });
+    }
+
+    function showCrew(index) {
+      const i = Number(index);
+      const crew = crewData[i];
+
+      roleEl.textContent = crew.role;
+      nameEl.textContent = crew.name;
+      descEl.innerHTML = crew.text;
+      imgEl.src = crew.img;
+
+      updateDots(i);
+      currentIndex = i;
+    }
+
+    // wire up dot clicks
+    dots.forEach(dot => {
+      dot.addEventListener("click", (e) => {
+        const index = Number(e.currentTarget.dataset.index);
+        showCrew(index);
+      });
+    });
+
+    // auto-advance
+    const autoId = setInterval(() => {
+      currentIndex = (currentIndex + 1) % crewData.length;
+      showCrew(currentIndex);
+    }, 5000);
+
+    // Initialize
+    showCrew(currentIndex);
+  }
+
+  // ==================== TECHNOLOGY PAGE ====================
+  const techLaunch = [
+    {
+      jobName:" LAUNCH VEHICLE",
+      jobDesc: "  A launch vehicle or carrier rocket is a rocket-propelled vehicle used to carry a payload from Earth's surface to <br> space, usually to Earth orbit or beyond. Our  WEB-X  carrier rocket is the most powerful in operation.  Standing 150 metres tall, it's quite an awe-inspiring sight <br> on the launch pad!",
+      jobImg: "/src/assets/technology/image-launch-vehicle-portrait.jpg"
+    },
+    {
+      jobName:"SPACE CAPSULE",
+      jobDesc: "A space capsule is an often-crewed spacecraft that uses a blunt-body reentry capsule to reenter the Earth's atmosphere without wings. Our capsule is where you'll spend your time during the flight. It includes a space gym, cinema, and plenty of other activities to keep you entertained.",
+      jobImg: " /src/assets/technology/image-space-capsule-portrait.jpg"
+    },
+    {
+      jobName:" SPACEPORT",
+      jobDesc: "A spaceport or cosmodrome is a site for launching (or receiving) spacecraft, by analogy to the seaport for ships or airport for aircraft. Based in the  famous Cape Canaveral, our spaceport is ideally situated to take advantage of the Earth's rotation for launch.",
+      jobImg: " /src/assets/technology/image-spaceport-portrait.jpg"
+    }
+  ];
+
+  const teamTitle = document.getElementById("teamTitle");
+  const teamDesc = document.getElementById("teamdesc");
+  const teamImg = document.getElementById("teamImg");
+  const techButtons = document.querySelectorAll(".lbtn");
+
+  // Only run technology code if elements exist
+  if (teamTitle && teamDesc && teamImg && techButtons.length > 0) {
+    function changeContent(index) {
+      teamTitle.innerHTML = techLaunch[index].jobName;
+      teamDesc.innerHTML = techLaunch[index].jobDesc;
+      teamImg.src = techLaunch[index].jobImg;
+
+      // Active button styling
+      techButtons.forEach(btn => btn.classList.remove("bg-white", "text-black"));
+      techButtons[index].classList.add("bg-white", "text-black");
+    }
+
+    // attach event listeners
+    techButtons.forEach((btn, index) => {
+      btn.addEventListener("click", () => changeContent(index));
+    });
+
+    // Initialize first item
+    changeContent(0);
+  }
 });

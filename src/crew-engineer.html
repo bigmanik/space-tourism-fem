@@ -39,25 +39,36 @@
 
 <main class="text-white flex mt-[35vh] justify-between mobile:mt-28  mobile:flex-col mobile:items-center mobile:justify-center  " > 
   
-  <section class="ml-[30vh]"> 
+  <section class="ml-[30vh] "> 
 
- 
+  <div id="crew-text"> 
    <h2 class=" -mt-24 tracking-widest">
      <span class=" text-gray-700 mr-5 font-bold"> 02 </span>   MEET YOUR CREW
   </h2> 
   <div class="mt-24" > 
-  <h2 class="mb-6 text-2xl font-thin text-gray-700 tracking-wider"> FLIGHT Engineer </h2>
-  <h1 class=" mb-12 text-4xl tracking-widest">  ANOUSHEH ANSARI </h1>
-    <p> 
+  <h2 id ="crew-role" class="mb-6 text-2xl font-thin text-gray-700 tracking-wider"> FLIGHT Engineer </h2>
+  <h1 id ="crew-name" class=" mb-12 text-4xl tracking-widest">  ANOUSHEH ANSARI </h1>
+    <p id ="crew-desc" class="w-[500px] max-w-[500px] "> 
       Anousheh Ansari is an Iranian American engineer and co- <br>
       founder of Prodea Systems. Ansari was the fourth self- <br>
       funded space tourist, the first self-funded woman to fly<br>
        to the ISS, and the first Iranian in space.
      </p>
+     </div>
    </div>
-  </section class=" w-60 h-50">
+     <div class="relative mt-20 left-1/2 transform -translate-x-1/2 flex space-x-3">
+    <button class="dot bg-white/50 w-3 h-3 rounded-full" data-index="0"></button>
+    <button class="dot bg-white/50 w-3 h-3 rounded-full" data-index="1"></button>
+    <button class="dot bg-white w-3 h-3 rounded-full" data-index="2"></button>
+    <button class="dot bg-white/50 w-3 h-3 rounded-full" data-index="3"></button>
+  </div>
   
-     <section> <img src="/src/assets/crew/image-anousheh-ansari.png" alt="ansari"class="-mt-24" srcset=""> </section>
+  </section >
+  
+     <section class=" h-[500px] mr-20"> 
+      <img id ="crew-img" src="/src/assets/crew/image-anousheh-ansari.png" alt="ansari" 
+      class="-mt-24 w-auto h-[500px] object-contain mx-auto transition-all duration-500" srcset="crew member">
+     </section>
 </main>
 
   <script src="js/script.js"></script>
