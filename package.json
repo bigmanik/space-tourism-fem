@@ -4,7 +4,9 @@
     "postcss": "^8.5.6",
     "tailwindcss": "^3.4.1"
   },
+ 
   "scripts": {
-    "build": "npx tailwindcss -i ./src/css/input.css -o ./dist/css/output.css --minify && xcopy /E /I /Y src\\*.html dist\\ && xcopy /E /I /Y src\\assets dist\\assets\\"
+    "build": "npx tailwindcss -i ./src/css/input.css -o ./dist/css/output.css --minify && mkdir -p dist && cp src/*.html dist/ && mkdir -p dist/assets && cp -r src/assets/* dist/assets/"
   }
 }
+
