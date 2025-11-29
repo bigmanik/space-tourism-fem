@@ -3,63 +3,102 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <link href="../dist/css/output.css" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
-  
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
   <title>Frontend Mentor | Space tourism website</title>
 </head>
-<body class="bg-fullbdy mobile:bg-minscrn tablet:bg-tabscrn bg-no-repeat min-h-screen flex flex-col font-sans   ">
+<body class="bg-minscrn md:bg-tabscrn lg:bg-fullbdy bg-cover bg-center bg-no-repeat bg-fixed min-h-screen flex flex-col font-sans">
    
- <header class="fixed top-0 left-0 right-0 z-10 flex items-center justify-between h-20">
-  
-  <!-- Logo and mobile menu button container -->
-  <div class="flex items-center justify-between w-full px-6 md:px-12">
-    <button id="menu-toggle" class="focus:outline-none md:hidden">
-      <img src="assets/shared/icon-hamburger.svg" alt="">
+
+<header class="fixed top-0 left-0 right-0 z-50 h-20 flex items-center justify-between bg-transparent">
+  <!-- Hamburger Button (Mobile Only) -->
+  <div class="flex items-center justify-between w-full px-6 md:hidden ml-[290px]">
+    <button
+      id="menu-toggle"
+      class="z-50 focus:outline-none"
+      aria-label="Toggle menu"
+    >
+      <img
+        id="hamburger-icon"
+        src="assets/shared/icon-hamburger.svg"
+        alt="Open menu"
+        class="w-8 h-8 transition-opacity duration-300"
+      >
+      <img
+        id="close-icon"
+        src="assets/shared/icon-close.svg"
+        alt="Close menu"
+        class="w-8 h-8 absolute inset-0 opacity-0 transition-opacity duration-300"
+      >
     </button>
   </div>
 
-  <!-- The line -->
-  <hr class="absolute top-[3rem] left-[10rem] right-[10rem]  border-t-2 border-white/30 hidden md:block">
+  <!-- Mobile Menu Overlay + Glass Panel -->
+  <div
+    id="mobile-menu-overlay"
+    class="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm opacity-0 pointer-events-none 
+           transition-all duration-500 md:hidden"
+  ></div>
 
-  <!-- The glass menu bar -->
-  <nav class="absolute right-0 top-[1rem] flex justify-center items-center w-[60%] h-16 p-6
-              rounded-l-2xl shadow-2xl bg-white/10 backdrop-blur-md
-              border-t border-white/20 border-opacity-50
-              hover:border-opacity-80 transition-all duration-300 hidden md:flex">
-    <ul class="flex space-x-8 list-none text-white mr-10">
-      <li><a href="/src/index.html" class="hover:underline decoration-2 [text-underline-offset:26px]">00 Home</a></li>
-      <li><a href="/src/destination-mars.html" class="hover:underline decoration-2 [text-underline-offset:26px]">01 Destination</a></li>
-      <li><a href="/src/crew-engineer.html" class="hover:underline decoration-2 [text-underline-offset:26px]">02 Crew</a></li>
-      <li><a href="#" class="hover:underline decoration-2 [text-underline-offset:26px]">03 Technology</a></li>
-    </ul>
+  <nav id="mobile-menu"
+     class="fixed top-0 right-0 z-50 h-screen w-80 pt-32 px-10
+           bg-white/5 backdrop-blur-xl border-l border-white/20
+           shadow-2xl flex flex-col space-y-10 text-start
+           translate-x-full opacity-0 pointer-events-none
+           transition-all duration-500 ease-in-out md:hidden"
+  >
+    <!-- Close Button -->
+    <button
+      id="close-mobile-menu"
+      class="absolute top-8 right-24 text-white text-4xl hover:text-gray-300 focus:outline-none"
+    >
+      &times;
+    </button>
+
+    <a href="/src/index.html" class="text-white text-2xl font-light tracking-wider hover:text-gray-300 transition">00 Home</a>
+    <a href="/src/destination-mars.html" class="text-white text-2xl font-light tracking-wider hover:text-gray-300 transition">01 Destination</a>
+    <a href="/src/crew-engineer.html" class="text-white text-2xl font-light tracking-wider hover:text-gray-300 transition">02 Crew</a>
+    <a href="/src/technology-vehicle.html" class="text-white text-2xl font-light tracking-wider hover:text-gray-300 transition">03 Technology</a>
   </nav>
-</header>
 
 
-     <main  class="text-white mt-[35vh] flex-1 flex justify-between mobile:mt-28  mobile:flex-col mobile:items-center mobile:justify-center " > 
-      <section  class=" mobile:text-center " style="margin-left: 100px;"> 
-        <span class=" block  text-gray-300 font-thin text-2xl mobile:text-xs  uppercase tracking-tight pt-8 "> So, you want to travel to </span>
-         <br>  
-         <span class="block font-thin text-8xl mobile:text-5xl uppercase tracking-widest pt-[1.5vh] p-2 "> Space</span>
-         <br>
-        <span class="block text-gray-500 font-thin text-sm mobile:text-xs tracking-tight ">  Let's face it; if you want to go to space, you might as well <br>
-           genuinely go to outer space and not hover kind of on the <br>
-            edge of it. Well sit back, and relax 
-  because we'll give you <br>
-   a truly out of this world experience!
+    <!-- The line -->
+    <hr class="absolute top-[3rem] left-[10rem] right-[10rem] border-t-2 border-white/30 hidden lg:block">
+
+    <!-- The glass menu bar -->
+    <nav class="absolute right-0 top-[1rem] flex justify-center items-center w-[60%] h-16 p-6 rounded-l-2xl shadow-2xl bg-white/10 backdrop-blur-md border-t border-white/20 border-opacity-50 hover:border-opacity-80 transition-all duration-300 hidden md:flex">
+      <ul class="flex space-x-8 list-none text-white mr-10">
+        <li><a href="/src/index.html" class="hover:underline decoration-2 [text-underline-offset:26px]">00 Home</a></li>
+        <li><a href="/src/destination-mars.html" class="hover:underline decoration-2 [text-underline-offset:26px]">01 Destination</a></li>
+        <li><a href="/src/crew-engineer.html" class="hover:underline decoration-2 [text-underline-offset:26px]">02 Crew</a></li>
+        <li><a href="/src/technology-vehicle.html" class="hover:underline decoration-2 [text-underline-offset:26px]">03 Technology</a></li>
+      </ul>
+
+    </nav>
+  </header>
+
+  <main class="text-white flex-1 flex flex-col md:flex-row justify-between items-center md:items-start px-6 md:px-12 lg:px-24 pt-32 md:pt-48 pb-12 gap-8 mobile:mt-10"> 
+    <section class="text-center md:text-left max-w-lg lg:mt-16"> 
+      <span class="block text-gray-300 font-thin text-base md:text-xl lg:text-2xl uppercase tracking-wider md:tracking-tight">
+        So, you want to travel to
       </span>
-  </section>
+      <span class="block font-thin text-6xl md:text-7xl lg:text-8xl uppercase tracking-widest pt-4 pb-4">
+        Space
+      </span>
+      <span class="block text-gray-400 font-thin text-sm md:text-base leading-relaxed tracking-tight max-w-md ">
+        Let's face it; if you want to go to space, you might as well genuinely go to outer space and not hover kind of on the edge of it. Well sit back, and relax because we'll give you a truly out of this world experience!
+      </span>
+    </section>
       
-  <section  class="mobile:text-center"> 
+    <section class="mt-8 md:mt-24 flex items-center justify-center mobile:mb-32"> 
+      <span class="w-32 h-32 md:w-40 md:h-40 lg:w-44 lg:h-44 tracking-wide text-lg md:text-xl lg:text-2xl text-black bg-white rounded-full flex justify-center items-center hover:ring-8 hover:ring-white/20 transition-all duration-300 uppercase">
+        Explore
+      </span>
+    </section>
+  </main>
 
-    <span class=" w-44 h-44 tracking-wide mt-28 mr-48  text-black bg-white rounded-full flex justify-center items-center mobile:w-32 mobile:h-32 mobile:text-sm "> Explore</span>
-
-  </section>
- </main>
- <script src="js/script.js"></script>
+  <script src="js/script.js"></script>
 </body>
 </html>

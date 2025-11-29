@@ -197,3 +197,43 @@ document.addEventListener("DOMContentLoaded", () => {
     changeContent(0);
   }
 });
+
+//hamburger menu 
+
+const menuToggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const overlay = document.getElementById('mobile-menu-overlay');
+  const hamburgerIcon = document.getElementById('hamburger-icon');
+  const closeIcon = document.getElementById('close-icon');
+  const closeBtn = document.getElementById('close-mobile-menu');
+
+  function openMenu() {
+    mobileMenu.classList.remove('translate-x-full', 'opacity-0', 'pointer-events-none');
+    mobileMenu.classList.add('translate-x-0', 'opacity-100', 'pointer-events-auto');
+    overlay.classList.remove('opacity-0', 'pointer-events-none');
+    overlay.classList.add('opacity-100', 'pointer-events-auto');
+   
+    hamburgerIcon.classList.add('opacity-0');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    mobileMenu.classList.add('translate-x-full', 'opacity-0', 'pointer-events-none');
+    mobileMenu.classList.remove('translate-x-0', 'opacity-100', 'pointer-events-auto');
+    overlay.classList.add('opacity-0', 'pointer-events-none');
+    overlay.classList.remove('opacity-100', 'pointer-events-auto');
+    
+    hamburgerIcon.classList.remove('opacity-0');
+    document.body.style.overflow = '';
+  }
+
+  menuToggle.addEventListener('click', () => {
+    if (mobileMenu.classList.contains('translate-x-full')) {
+      openMenu();
+    } else {
+      closeMenu();
+    }
+  });
+
+  closeBtn.addEventListener('click', closeMenu);
+  overlay.addEventListener('click', closeMenu); // click outside to close

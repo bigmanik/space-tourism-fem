@@ -32,13 +32,14 @@ module.exports = {
      fontFamily:{
       'sans': ['orbitron', 'sans-serif'],
      },
-      screens:{
-        'sm': '640px',
-        'md': '768px',
-        'mobile':{ 'max': '639px' },
-        'tablet': { 'min': '641px', 'max': '767px' },
-         
-      },
+     
+      screens: {
+  'sm': '640px',
+  'md': '768px',
+  'lg': '1024px',
+  'mobile': { 'max': '640px' },  
+  'tablet': { 'min': '641px', 'max': '1023px' },
+}
     },
   },
   plugins: [],
