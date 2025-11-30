@@ -1,12 +1,15 @@
 {
+  "name": "space-tourism",
   "devDependencies": {
     "autoprefixer": "^10.4.21",
+    "cpy-cli": "^5.0.0",
     "postcss": "^8.5.6",
     "rimraf": "^6.1.2",
     "tailwindcss": "^3.4.1"
   },
   "scripts": {
+    "prebuild": "rimraf dist && npx cpy src/**/* dist/ --parents",
     "build": "npx tailwindcss -i ./src/css/input.css -o ./dist/css/output.css --minify",
-    "prebuild": "rimraf dist && xcopy src dist /E /I /Y"
+    "dev": "npx tailwindcss -i ./src/css/input.css -o ./dist/css/output.css --watch"
   }
 }
